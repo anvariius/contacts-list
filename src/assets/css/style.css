@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'TildaSans';
+    src: local('TildaSans'),
+    url('~@/assets/fonts/TildaSans/TildaSans-VF.woff') format('woff'),
+    url('~@/assets/fonts/TildaSans/TildaSans-VF.woff2') format('woff2');
+    font-style: normal;
+}
+*{
+    /* здесь указать шрифт */
+    font-family: 'TildaSans', serif;
+}
+:root {
+    --primary: #490AFE;
+    --white: #fff;
+    --lightgrey: #efefef;
+    --grey: #a5a5a5;
+}
+.section{
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+.container{
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}

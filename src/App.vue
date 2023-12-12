@@ -1,32 +1,36 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <auth-view v-if="!auth" @setAuth="setAuth"/>
+    <main-view v-else @logOut="logOut" :auth="auth"/>
   </div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
+@import url('assets/css/reset.css');
+@import url('assets/css/style.css');
 </style>
+<script>
+import MainView from "@/views/MainView";
+import AuthView from "@/views/AuthView";
+export default {
+  components: {AuthView, MainView},
+  data() {
+    return {
+      //получаем роль авторизации
+      auth: this.$store.getters.checkAuth
+    }
+  },
+  methods: {
+    //устанавливаем авторизацию в store
+    setAuth(role) {
+      this.$store.commit('setAuth', role);
+      this.auth = role;
+    },
+    //удаляем авторизацию из store
+    logOut() {
+      this.$store.commit('logOut');
+      this.auth = null;
+    }
+  }
+}
+</script>
